@@ -20,7 +20,7 @@ EM_MOM = 0.9
 STAGE_NUM = 3
 
 # Training settings
-BATCH_SIZE = 16
+BATCH_SIZE = 4
 ITER_MAX = 30000
 ITER_SAVE = 2000
 
