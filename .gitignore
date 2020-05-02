@@ -1,3 +1,6 @@
 *.pyc
 *.pth
+*.zip
+*.tar
+*.tar.gz
 __pycache__/
