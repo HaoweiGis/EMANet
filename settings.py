@@ -35,7 +35,7 @@ DEVICES = list(range(0, 4))
 
 LOG_DIR = './logdir' 
 MODEL_DIR = './models'
-NUM_WORKERS = 16
+NUM_WORKERS = 0
 
 logger = logging.getLogger('train')
 logger.setLevel(logging.INFO)

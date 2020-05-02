@@ -54,7 +54,7 @@ class Session:
     def __init__(self, dt_split):
         torch.manual_seed(66)
         torch.cuda.manual_seed_all(66)
-        torch.cuda.set_device(settings.DEVICE)
+        # torch.cuda.set_device(settings.DEVICE)
 
         self.log_dir = settings.LOG_DIR
         self.model_dir = settings.MODEL_DIR
@@ -90,7 +90,8 @@ class Session:
                 }],
             momentum=settings.LR_MOM)
 
-        self.net = DataParallel(self.net, device_ids=settings.DEVICES)
+        # self.net = DataParallel(self.net, device_ids=settings.DEVICES)
+        self.net = DataParallel(self.net)
         patch_replication_callback(self.net)
 
     def write(self, out):
