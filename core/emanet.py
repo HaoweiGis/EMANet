@@ -8,7 +8,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from bn_lib.nn.modules import SynchronizedBatchNorm2d
+from core.bn_lib.nn.modules import SynchronizedBatchNorm2d
 import settings
 
 norm_layer = partial(SynchronizedBatchNorm2d, momentum=settings.BN_MOM)
