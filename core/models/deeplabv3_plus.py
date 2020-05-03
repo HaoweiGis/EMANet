@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .base_models.xception import get_xception
-from .deeplabv3 import _ASPP
-from .fcn import _FCNHead
+from base_models.xception import get_xception
+from deeplabv3 import _ASPP
+from fcn import _FCNHead
 from ..nn import _ConvBNReLU
 
 __all__ = ['DeepLabV3Plus', 'get_deeplabv3_plus', 'get_deeplabv3_plus_xception_voc']

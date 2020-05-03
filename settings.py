@@ -13,7 +13,7 @@ IGNORE_LABEL = 255
 
 # Model definition
 N_CLASSES = 21
-N_LAYERS = 101
+N_LAYERS = 'resnet50'
 STRIDE = 8
 BN_MOM = 3e-4
 EM_MOM = 0.9
