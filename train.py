@@ -13,6 +13,7 @@ from tensorboardX import SummaryWriter
 
 # from network import EMANet
 from core.models.emanet import EMANet
+from core.models.danet import DANet
 
 from bn_lib.nn.modules import patch_replication_callback
 from dataset import TrainDataset
@@ -72,7 +73,8 @@ class Session:
             dataset, batch_size=settings.BATCH_SIZE, pin_memory=True,
             num_workers=settings.NUM_WORKERS, shuffle=True, drop_last=True)
 
-        self.net = EMANet(settings.N_CLASSES, settings.N_LAYERS).cuda()
+        # self.net = EMANet(settings.N_CLASSES, settings.N_LAYERS).cuda()
+        self.net = DANet(settings.N_CLASSES, backbone=settings.N_LAYERS, pretrained_base=False).cuda()
         self.opt = SGD(
             params=[
                 {
