@@ -11,9 +11,9 @@ from torch.optim import SGD
 from torch.utils.data import DataLoader
 from tensorboardX import SummaryWriter
 
-from network import EMANet
+from core.emanet import EMANet
 
-from bn_lib.nn.modules import patch_replication_callback
+from core.bn_lib.nn.modules import patch_replication_callback
 from dataset import TrainDataset
 import settings
 

@@ -148,14 +148,14 @@ class ResNet(nn.Module):
 
 def resnet(n_layers, stride):
     layers = {
-        50: [3, 4, 6, 3],
-        101: [3, 4, 23, 3],
-        152: [3, 8, 36, 3],
+        'resnet50': [3, 4, 6, 3],
+        'resnet101': [3, 4, 23, 3],
+        'resnet152': [3, 8, 36, 3],
     }[n_layers]
     pretrained_path = {
-        50: './models/resnet50-ebb6acbb.pth',
-        101: './models/resnet101-2a57e44d.pth',
-        152: './models/resnet152-0d43d698.pth',
+        'resnet50': './models/resnet50-ebb6acbb.pth',
+        'resnet101': './models/resnet101-2a57e44d.pth',
+        'resnet152': './models/resnet152-0d43d698.pth',
     }[n_layers]
 
     net = ResNet(Bottleneck, layers=layers, stride=stride)
