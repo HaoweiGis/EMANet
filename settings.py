@@ -4,7 +4,7 @@ from torch import Tensor
 
 
 # Data settings
-DATA_ROOT = './datasets/'
+DATA_ROOT = './datasets/VOCData' #xiugai
 MEAN = Tensor(np.array([0.485, 0.456, 0.406]))
 STD = Tensor(np.array([0.229, 0.224, 0.225]))
 SCALES = (0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0)
@@ -12,7 +12,7 @@ CROP_SIZE = 513
 IGNORE_LABEL = 255
 
 # Model definition
-N_CLASSES = 21
+N_CLASSES = 21 #xiugai
 N_LAYERS = 'resnet50'
 STRIDE = 8
 BN_MOM = 3e-4
