@@ -319,7 +319,7 @@ class CrossEntropyLoss2d(nn.Module):
 
 
 def test_net():
-    model = EMANet(n_classes=21, n_layers=50)
+    model = EMANet(n_classes=21, n_layers='resnet50')
     model.eval()
     print(list(model.named_children()))
     image = torch.randn(1, 3, 513, 513)

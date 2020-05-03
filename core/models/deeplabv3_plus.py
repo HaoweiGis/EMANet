@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from base_models.xception import get_xception
-from deeplabv3 import _ASPP
-from fcn import _FCNHead
+from .base_models.xception import get_xception
+from .deeplabv3 import _ASPP
+from .fcn import _FCNHead
 from ..nn import _ConvBNReLU
 
 __all__ = ['DeepLabV3Plus', 'get_deeplabv3_plus', 'get_deeplabv3_plus_xception_voc']
@@ -115,44 +115,29 @@ class _DeepLabHead(nn.Module):
         return self.block(torch.cat([x, c1], dim=1))
 
 
-# def get_deeplabv3_plus(dataset='pascal_voc', backbone='xception', pretrained=False, root='~/.torch/models',
-#                        pretrained_base=True, **kwargs):
-#     acronyms = {
-#         'pascal_voc': 'pascal_voc',
-#         'pascal_aug': 'pascal_aug',
-#         'ade20k': 'ade',
-#         'coco': 'coco',
-#         'citys': 'citys',
-#     }
-#     from ..data.dataloader import datasets
-#     model = DeepLabV3Plus(datasets[dataset].NUM_CLASS, backbone=backbone, pretrained_base=pretrained_base, **kwargs)
-#     if pretrained:
-#         from .model_store import get_model_file
-#         device = torch.device(kwargs['local_rank'])
-#         model.load_state_dict(
-#             torch.load(get_model_file('deeplabv3_plus_%s_%s' % (backbone, acronyms[dataset]), root=root),
-#                 map_location=device))
-#     return model
+def get_deeplabv3_plus(dataset='pascal_voc', backbone='xception', pretrained=False, root='~/.torch/models',
+                       pretrained_base=True, **kwargs):
+    acronyms = {
+        'pascal_voc': 'pascal_voc',
+        'pascal_aug': 'pascal_aug',
+        'ade20k': 'ade',
+        'coco': 'coco',
+        'citys': 'citys',
+    }
+    from ..data.dataloader import datasets
+    model = DeepLabV3Plus(datasets[dataset].NUM_CLASS, backbone=backbone, pretrained_base=pretrained_base, **kwargs)
+    if pretrained:
+        from .model_store import get_model_file
+        device = torch.device(kwargs['local_rank'])
+        model.load_state_dict(
+            torch.load(get_model_file('deeplabv3_plus_%s_%s' % (backbone, acronyms[dataset]), root=root),
+                map_location=device))
+    return model
 
 
-# def get_deeplabv3_plus_xception_voc(**kwargs):
-#     return get_deeplabv3_plus('pascal_voc', 'xception', **kwargs)
-
-def test_net():
-    # model = EMANet(n_classes=21, n_layers=50)
-    # nclass, backbone='xception', aux=True, pretrained_base=True, dilated=True, **kwargs):
-    model = DeepLabV3Plus(nclass=21, backbone='xception', pretrained_base=pretrained_base, **kwargs)
-    model.eval()
-    print(list(model.named_children()))
-    image = torch.randn(1, 3, 513, 513)
-    label = torch.zeros(1, 513, 513).long()
-    pred = model(image, label)
-    print(pred.size())
+def get_deeplabv3_plus_xception_voc(**kwargs):
+    return get_deeplabv3_plus('pascal_voc', 'xception', **kwargs)
 
 
 if __name__ == '__main__':
-    test_net()
-
-
-# if __name__ == '__main__':
-#     model = get_deeplabv3_plus_xception_voc()
+    model = get_deeplabv3_plus_xception_voc()
