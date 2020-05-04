@@ -71,7 +71,8 @@ class Session:
             dataset, batch_size=settings.BATCH_SIZE, pin_memory=True,
             num_workers=settings.NUM_WORKERS, shuffle=True, drop_last=True)
 
-        self.net = EMANet(settings.N_CLASSES, settings.N_LAYERS).cuda()
+        # self.net = EMANet(settings.N_CLASSES, settings.N_LAYERS).cuda()
+        self.net = EMANet(settings.N_CLASSES, settings.N_LAYERS)
         self.opt = SGD(
             params=[
                 {
@@ -145,7 +146,7 @@ class Session:
 
 
 def main(ckp_name='latest.pth'):
-    sess = Session(dt_split='trainaug')
+    sess = Session(dt_split='trainrs')
     sess.load_checkpoints(ckp_name)
 
     dt_iter = iter(sess.dataloader)

@@ -87,6 +87,7 @@ def flip(image, label=None):
 
 class BaseDataset(data.Dataset):
     def __init__(self, data_root, split):
+        print(split)
         self.data_root = data_root
 
         file_list = osp.join('datalist', split + '.txt')
@@ -106,7 +107,7 @@ class BaseDataset(data.Dataset):
 
 
 class TrainDataset(BaseDataset):
-    def __init__(self, data_root=settings.DATA_ROOT, split='trainaug'):
+    def __init__(self, data_root=settings.DATA_ROOT, split='trainrs'):
         super(TrainDataset, self).__init__(data_root, split)
 
     def _get_item(self, image_id):
@@ -124,7 +125,7 @@ class TrainDataset(BaseDataset):
  
 
 class ValDataset(BaseDataset):
-    def __init__(self, data_root=settings.DATA_ROOT, split='val'):
+    def __init__(self, data_root=settings.DATA_ROOT, split='valrs'):
         super(ValDataset, self).__init__(data_root, split)
 
     def _get_item(self, image_id):
